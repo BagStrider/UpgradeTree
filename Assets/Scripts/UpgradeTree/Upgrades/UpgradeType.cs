@@ -1,4 +1,4 @@
-namespace UpgradeTree.Node
+namespace UpgradeTree.Upgrades
 {
     public enum UpgradeType
     {

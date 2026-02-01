@@ -1,9 +1,7 @@
 using UnityEngine;
-using UpgradeTree.Node;
 using UpgradeTree.Node.Configs;
-using UpgradeTree.Upgrades;
 
-namespace UpgradeTree
+namespace UpgradeTree.Upgrades
 {
     public class UpgradeFactory : MonoBehaviour
     {

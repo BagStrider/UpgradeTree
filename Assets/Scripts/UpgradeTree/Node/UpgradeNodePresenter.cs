@@ -25,7 +25,7 @@ namespace UpgradeTree.Node
             _view.SetCost(_node.CurrentUpgradeCost);
             
             _node.OnUpgrade += OnUpgradeHandle;
-            _node.OnUpgradeComplete += OnUpgradeCompleteHandle;
+            _node.OnMaxUpgrade += OnMaxUpgradeHandle;
             _node.OnLockChanged += OnLockChanged;
             _view.OnClicked += OnViewClickedHandle;
         }
@@ -35,13 +35,12 @@ namespace UpgradeTree.Node
             _view.SetCounter(_node.CurrentUpgradePosition, _node.Count);
             _view.SetCost(_node.CurrentUpgradeCost);
         }
-        private void OnUpgradeCompleteHandle()
+        private void OnMaxUpgradeHandle()
         {
             _view.SetSoldOut();
         }
         private void OnViewClickedHandle()
         {
-            Debug.Log("Clicked");
             _node.TryToUpgrade();
         }
         private void OnLockChanged(LockState state)
@@ -54,7 +53,7 @@ namespace UpgradeTree.Node
         {
             _node.OnUpgrade -= OnUpgradeHandle;
             _node.OnLockChanged -= OnLockChanged;
-            _node.OnUpgradeComplete -= OnUpgradeCompleteHandle;
+            _node.OnMaxUpgrade -= OnMaxUpgradeHandle;
             _view.OnClicked -= OnViewClickedHandle;
         }
     }

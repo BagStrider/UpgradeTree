@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Abstractions.Lockable;
 using Money;
+using UnityEngine;
+using UpgradeTree.Upgrades;
 
 namespace UpgradeTree.Node
 {
@@ -9,7 +11,7 @@ namespace UpgradeTree.Node
     {
         public event Action OnFirstUpgrade;
         public event Action OnUpgrade;
-        public event Action OnUpgradeComplete;
+        public event Action OnMaxUpgrade;
         public event Action<LockState> OnLockChanged;
         
         public int CurrentUpgradePosition => _upgradeIndex;
@@ -40,13 +42,19 @@ namespace UpgradeTree.Node
         public void TryToUpgrade()
         {
             if(_currentUpgrade == null) return;
-            
-            if (!_playerMoney.TryToSpend(_currentUpgrade.Data.Cost)) return;
+
+            if (!_playerMoney.TryToSpend(_currentUpgrade.Data.Cost))
+            {
+                return;
+            }
             
             _currentUpgrade?.Upgrade();
-            
-            if(_upgradeIndex == 0)
+
+            if (_upgradeIndex == 0)
+            {
                 OnFirstUpgrade?.Invoke();
+            }
+            
             
             _upgradeIndex++;
                         
@@ -57,7 +65,7 @@ namespace UpgradeTree.Node
             
             if (_upgradeIndex >= _upgrades.Count)
             {
-                OnUpgradeComplete?.Invoke();
+                OnMaxUpgrade?.Invoke();
             }
         }
 

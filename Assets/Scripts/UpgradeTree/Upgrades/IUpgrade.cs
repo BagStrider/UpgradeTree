@@ -1,6 +1,6 @@
 using UpgradeTree.Node.Configs;
 
-namespace UpgradeTree
+namespace UpgradeTree.Upgrades
 {
     public interface IUpgrade
     {
