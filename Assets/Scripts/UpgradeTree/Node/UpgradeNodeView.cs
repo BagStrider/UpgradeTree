@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace UpgradeTree.Node
 {
@@ -10,6 +9,7 @@ namespace UpgradeTree.Node
         public event Action OnClicked;
         
         [SerializeField] private TMP_Text _countText;
+        [SerializeField] private TMP_Text _costText;
         [SerializeField] private SpriteRenderer _image;
         [SerializeField] private Animator _animator;
 
@@ -34,6 +34,15 @@ namespace UpgradeTree.Node
         public void SetCounter(int currentCount, int maxCount)
         {
             _countText.text = $"{currentCount}/{maxCount}";
+        }
+
+        public void SetSoldOut()
+        {
+            _costText.text = "SOLDOUT";
+        }
+        public void SetCost(float cost)
+        {
+            _costText.text = $"{cost} $";
         }
 
         private void OnMouseDown()

@@ -14,6 +14,7 @@ namespace UpgradeTree.Node
         
         public int CurrentUpgradePosition => _upgradeIndex;
         public int Count => _upgrades.Count;
+        public float CurrentUpgradeCost => _currentUpgrade.Data.Cost;
         
         private List<IUpgrade> _upgrades = new();
         private IUpgrade _currentUpgrade;
@@ -48,15 +49,16 @@ namespace UpgradeTree.Node
                 OnFirstUpgrade?.Invoke();
             
             _upgradeIndex++;
+                        
+            if (_upgradeIndex < _upgrades.Count)
+                _currentUpgrade = _upgrades[_upgradeIndex];
+            
             OnUpgrade?.Invoke();
             
             if (_upgradeIndex >= _upgrades.Count)
             {
                 OnUpgradeComplete?.Invoke();
-                return;
             }
-            
-            _currentUpgrade = _upgrades[_upgradeIndex];
         }
 
         public void Unlock()

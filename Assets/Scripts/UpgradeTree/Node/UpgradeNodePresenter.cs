@@ -1,6 +1,5 @@
 using System;
 using Abstractions.Lockable;
-using ModestTree;
 using UnityEngine;
 using UpgradeTree.Node.Configs;
 
@@ -23,6 +22,7 @@ namespace UpgradeTree.Node
         {
             _view.SetImage(_config.Icon);
             _view.SetCounter(_node.CurrentUpgradePosition, _node.Count);
+            _view.SetCost(_node.CurrentUpgradeCost);
             
             _node.OnUpgrade += OnUpgradeHandle;
             _node.OnUpgradeComplete += OnUpgradeCompleteHandle;
@@ -33,10 +33,11 @@ namespace UpgradeTree.Node
         private void OnUpgradeHandle()
         {
             _view.SetCounter(_node.CurrentUpgradePosition, _node.Count);
+            _view.SetCost(_node.CurrentUpgradeCost);
         }
         private void OnUpgradeCompleteHandle()
         {
-            //SoldOut bla bla bla
+            _view.SetSoldOut();
         }
         private void OnViewClickedHandle()
         {
