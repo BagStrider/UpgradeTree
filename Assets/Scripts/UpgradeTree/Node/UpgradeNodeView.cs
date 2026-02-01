@@ -1,7 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace UpgradeTree.Node
 {
@@ -10,19 +10,8 @@ namespace UpgradeTree.Node
         public event Action OnClicked;
         
         [SerializeField] private TMP_Text _countText;
-        [SerializeField] private Image _image;
+        [SerializeField] private SpriteRenderer _image;
         [SerializeField] private Animator _animator;
-        [SerializeField] private Button _button;
-
-        private void OnEnable()
-        {
-            _button.onClick.AddListener(OnClickedHandle);
-        }
-        private void OnDisable()
-        {
-            _button.onClick.RemoveListener(OnClickedHandle);
-        }
-
 
         public void Hide()
         {
@@ -47,7 +36,7 @@ namespace UpgradeTree.Node
             _countText.text = $"{currentCount}/{maxCount}";
         }
 
-        private void OnClickedHandle()
+        private void OnMouseDown()
         {
             OnClicked?.Invoke();
         }

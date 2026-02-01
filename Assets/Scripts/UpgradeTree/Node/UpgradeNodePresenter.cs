@@ -1,6 +1,7 @@
 using System;
-using Abstractions;
 using Abstractions.Lockable;
+using ModestTree;
+using UnityEngine;
 using UpgradeTree.Node.Configs;
 
 namespace UpgradeTree.Node
@@ -9,18 +10,18 @@ namespace UpgradeTree.Node
     {
         private UpgradeNode _node;
         private UpgradeNodeView _view;
-        private UpgradeNodeViewConfig _viewConfig;
+        private UpgradeNodesConfig _config;
 
-        public UpgradeNodePresenter(UpgradeNode node, UpgradeNodeView view, UpgradeNodeViewConfig viewConfig)
+        public UpgradeNodePresenter(UpgradeNode node, UpgradeNodeView view, UpgradeNodesConfig config)
         {
             _node = node;
             _view = view;
-            _viewConfig = viewConfig;
+            _config = config;
         }
 
         public void Initialize()
         {
-            _view.SetImage(_viewConfig.Icon);
+            _view.SetImage(_config.Icon);
             _view.SetCounter(_node.CurrentUpgradePosition, _node.Count);
             
             _node.OnUpgrade += OnUpgradeHandle;
@@ -39,9 +40,9 @@ namespace UpgradeTree.Node
         }
         private void OnViewClickedHandle()
         {
+            Debug.Log("Clicked");
             _node.TryToUpgrade();
         }
-
         private void OnLockChanged(LockState state)
         {
             if(state == LockState.Locked) _view.Hide();

@@ -1,21 +1,11 @@
-using System.Collections.Generic;
-using UpgradeTree.Node;
+using UpgradeTree.Node.Configs;
 
 namespace UpgradeTree
 {
     public interface IUpgrade
     {
-        public UpgradeConfig Config { get; }
+        public UpgradeData Data { get; }
+        
         public void Upgrade();
-    }
-
-
-
-    public class UpgradeTree
-    {
-        private List<UpgradeNode> _nodes = new ();
-        
-        
-        
     }
 }

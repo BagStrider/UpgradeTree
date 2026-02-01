@@ -7,6 +7,7 @@ namespace Initialize
     public class Bootstrap : MonoBehaviour
     {
         [SerializeField] private PlayerMoneyView _moneyView;
+        [SerializeField] private PlayerMoneyConfig _moneyConfig;
         
         [Inject] private PlayerMoney _playerMoney;
 
@@ -22,6 +23,8 @@ namespace Initialize
         {
             _presenter = new PlayerMoneyPresenter(_playerMoney, _moneyView);
             _presenter.Initialize();
+            
+            _playerMoney.Set(_moneyConfig.CurrentMoney);
         }
         
         private void OnDestroy()

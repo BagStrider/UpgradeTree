@@ -12,7 +12,7 @@ namespace UpgradeTree.Node
         public event Action OnUpgradeComplete;
         public event Action<LockState> OnLockChanged;
         
-        public int CurrentUpgradePosition => _upgradeIndex + 1;
+        public int CurrentUpgradePosition => _upgradeIndex;
         public int Count => _upgrades.Count;
         
         private List<IUpgrade> _upgrades = new();
@@ -25,6 +25,11 @@ namespace UpgradeTree.Node
         {
             _playerMoney = playerMoney;
         }
+
+        public void Initialize()
+        {
+            _currentUpgrade = _upgrades[0];
+        }
         
         public void AddUpgrade(IUpgrade upgrade)
         {
@@ -33,15 +38,17 @@ namespace UpgradeTree.Node
 
         public void TryToUpgrade()
         {
-            if (!_playerMoney.TryToSpend(_currentUpgrade.Config.Cost)) return;
+            if(_currentUpgrade == null) return;
+            
+            if (!_playerMoney.TryToSpend(_currentUpgrade.Data.Cost)) return;
             
             _currentUpgrade?.Upgrade();
-            OnUpgrade?.Invoke();
             
             if(_upgradeIndex == 0)
                 OnFirstUpgrade?.Invoke();
             
             _upgradeIndex++;
+            OnUpgrade?.Invoke();
             
             if (_upgradeIndex >= _upgrades.Count)
             {
