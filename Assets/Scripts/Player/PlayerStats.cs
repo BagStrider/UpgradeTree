@@ -1,0 +1,28 @@
+namespace Player
+{
+    public class PlayerStats
+    {
+        public float AttackSpeed => _additionalAttacks;
+        public float Damage => _damage;
+        public float DamageMultiplier => _damageMultiplier;
+        public float AdditionalAttacks => _additionalAttacks;
+        
+        private float _attackSpeed;
+        private float _damage;
+        private float _damageMultiplier;
+        private float _additionalAttacks;
+
+        public PlayerStats(PlayerStatsConfig config)
+        {
+            _attackSpeed = config.AttackSpeed;
+            _damage = config.Damage;
+            _damageMultiplier = config.DamageMultiplier;
+            _additionalAttacks = config.AdditionalAttacks;
+        }
+
+        public void SetAttackSpeed(float value) => _attackSpeed = value;
+        public void SetDamage(float value) => _damage = value;
+        public void SetDamageMultiplier(float value) => _damageMultiplier = value;
+        public void SetAdditionalAttacks(float value) => _additionalAttacks = value;
+    }
+}

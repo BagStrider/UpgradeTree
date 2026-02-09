@@ -24,7 +24,6 @@ namespace UpgradeTree.Node.Transitions
 
         private void OnFirstUpgradeHandle()
         {
-            Debug.Log(444);
             _nodeTo.Unlock();
             OnTransition?.Invoke();
         }
