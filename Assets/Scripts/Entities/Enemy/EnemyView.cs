@@ -1,4 +1,3 @@
-using System;
 using BagHealthBar.Scripts;
 using UnityEngine;
 
@@ -6,13 +5,19 @@ namespace Entities.Enemy
 {
     public class EnemyView : MonoBehaviour
     {
-        public event Action OnClicked;
         public HealthBarUI HealthView => _healthView;
         
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private HealthBarUI _healthView;
+        
+        private HealthBarUI _healthView;
 
+        public void Initialize(HealthBarUI healthView, Transform healthViewParent)
+        {
+            _healthView = healthView;
+            _healthView.transform.position = UnityEngine.Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, 1f, 0f));
+        }
+        
         public void SetSprite(Sprite sprite)
         {
             _spriteRenderer.sprite = sprite;
@@ -25,11 +30,6 @@ namespace Entities.Enemy
         public void PlayHitAnimation()
         {
             
-        }
-
-        private void OnMouseDown()
-        {
-            OnClicked?.Invoke();
         }
     }
 }

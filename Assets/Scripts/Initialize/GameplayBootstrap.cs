@@ -1,15 +1,12 @@
-using Enemy;
 using Entities.Enemy;
-using Player;
 using Zenject;
 
 namespace Initialize
 {
     public class GameplayBootstrap : IInitializable
     {
-        [Inject] private EnemyConfig _enemyConfig;
-        [Inject] private EnemyView _view;
-        [Inject] private PlayerStats _playerStats;
+        [Inject] private EnemyFactory _factory;
+        [Inject] private EnemyConfig _config;
         
         public void Initialize()
         {
@@ -18,9 +15,7 @@ namespace Initialize
 
         private void InitEnemy()
         {
-            EnemyModel enemyModel = new EnemyModel(_enemyConfig);
-            EnemyPresenter enemyPresenter = new EnemyPresenter(enemyModel, _view, _playerStats);
-            enemyPresenter.Initialize();
+            EnemyModel enemy = _factory.Create(_config);
         }
     }
 }

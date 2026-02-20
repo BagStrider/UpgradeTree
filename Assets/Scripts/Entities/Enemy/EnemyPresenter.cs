@@ -7,28 +7,24 @@ namespace Entities.Enemy
     {
         private EnemyModel _model;
         private EnemyView _view;
-        private PlayerStats _playerStats;
+        private EntityProvider _entityProvider;
 
-        public EnemyPresenter(EnemyModel model, EnemyView view, PlayerStats playerStats)
+        public EnemyPresenter(EnemyModel model, EnemyView view)
         {
             _model = model;
             _view = view;
-            _playerStats = playerStats;
         }
 
         public void Initialize()
         {
             _view.HealthView.Set(_model.Health.Value, _model.Health.MaxValue);
             _view.HealthView.SetText(_model.Health.Value.ToString());
+            
             _model.Health.OnValueChanged += OnHealthChangedHandle;
             _model.Health.OnDeath += OnDeathHandle;
             
-            _view.OnClicked += OnViewClickedHandle;
-        }
-
-        private void OnViewClickedHandle()
-        {
-            _model.TakeDamage(_playerStats.Damage * _playerStats.DamageMultiplier);
+            _entityProvider =  _view.gameObject.AddComponent<EntityProvider>();
+            _entityProvider.Initialize(_model);
         }
 
         private void OnHealthChangedHandle(float value)
@@ -46,7 +42,6 @@ namespace Entities.Enemy
         {
             _model.Health.OnValueChanged -= OnHealthChangedHandle;
             _model.Health.OnDeath -= OnDeathHandle;
-            _view.OnClicked -= OnViewClickedHandle;
         }
     }
 }
