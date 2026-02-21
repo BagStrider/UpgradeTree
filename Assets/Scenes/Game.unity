@@ -261,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 818932769}
   _stats: {fileID: 11400000, guid: b890a37f081124343abeff2f92f8f3bf, type: 2}
+  _lerpSpeed: 2.49
 --- !u!1 &939717736
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStatsConfig: {fileID: 11400000, guid: b890a37f081124343abeff2f92f8f3bf, type: 2}
   _entityDetector: {fileID: 1143540127}
+  _playerMovement: {fileID: 818932770}
 --- !u!114 &939717740
 MonoBehaviour:
   m_ObjectHideFlags: 0

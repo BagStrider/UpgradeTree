@@ -1,4 +1,5 @@
 using Entities.Enemy;
+using UnityEngine;
 using Zenject;
 
 namespace Initialize
@@ -15,7 +16,7 @@ namespace Initialize
 
         private void InitEnemy()
         {
-            EnemyModel enemy = _factory.Create(_config);
+            EnemyModel enemy = _factory.Create(_config, new Vector3(3, 0,0));
         }
     }
 }

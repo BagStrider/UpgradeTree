@@ -1,12 +1,14 @@
+using Abstractions;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IKnockable
     {
         [SerializeField] private Rigidbody2D _rb;
         
         [SerializeField] private PlayerStatsConfig _stats;
+        [SerializeField] private float _lerpSpeed;
         
         private Vector2 _movement = Vector2.zero;
         private Vector3 _cursorPosition = Vector3.zero;
@@ -37,7 +39,8 @@ namespace Player
                 return;
             }
 
-            _rb.linearVelocity = _stats.MovementSpeed * _movement;
+            _rb.linearVelocity = Vector2.Lerp(_rb.linearVelocity, _movement * _stats.MovementSpeed, Time.deltaTime * _lerpSpeed);
+            transform.rotation = _rotation;
         }
 
         private void ArrowsKeyMovement()
@@ -60,7 +63,16 @@ namespace Player
             }
             
             _rotation = Quaternion.LookRotation(Vector3.forward, _movement);
-            transform.rotation = _rotation;
+        }
+
+        public void LockMovement(bool isLocked)
+        {
+            _canMove = !isLocked;
+        }
+
+        public void Knockback(Vector3 direction, float knockbackForce)
+        {
+            _rb.AddForce(direction * knockbackForce);
         }
     }
 }

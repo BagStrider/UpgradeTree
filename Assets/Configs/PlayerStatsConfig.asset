@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStatsConfig
   m_EditorClassIdentifier: 
   _attackSpeed: 1
-  _movementSpeed: 3.14
+  _movementSpeed: 18.64
   _damage: 5
   _damageMultiplier: 3
   _additionalAttacks: 1
