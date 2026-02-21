@@ -341,6 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStatsConfig: {fileID: 11400000, guid: b890a37f081124343abeff2f92f8f3bf, type: 2}
+  _entityDetector: {fileID: 1143540127}
 --- !u!114 &939717740
 MonoBehaviour:
   m_ObjectHideFlags: 0

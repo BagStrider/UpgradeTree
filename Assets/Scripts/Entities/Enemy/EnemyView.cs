@@ -15,6 +15,7 @@ namespace Entities.Enemy
         public void Initialize(HealthBarUI healthView, Transform healthViewParent)
         {
             _healthView = healthView;
+            //todo: переделать
             _healthView.transform.position = UnityEngine.Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, 1f, 0f));
         }
         
