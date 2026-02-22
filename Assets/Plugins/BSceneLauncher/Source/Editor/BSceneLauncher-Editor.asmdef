@@ -1,0 +1,10 @@
+{
+  "name": "BSceneLauncher-Editor",
+  "references": [
+    "BSceneLauncher"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
