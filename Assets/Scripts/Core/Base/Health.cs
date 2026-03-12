@@ -19,22 +19,22 @@ namespace Core.Base
             _maxHealth = maxHealth;
         }
         
-        public void TakeDamage(float damage)
+        public void Decrease(float value)
         {
-            if(damage <= 0 ) return;
+            if(value <= 0 ) return;
         
-            _health -= damage;
+            _health -= value;
         
             OnValueChanged?.Invoke(_health);
         
             if(_health <= 0) OnDeath?.Invoke();
         }
 
-        public void Heal(float heal)
+        public void Increase(float value)
         {
-            if(heal <= 0 ) return;
+            if(value <= 0 ) return;
         
-            _health += heal;
+            _health += value;
         
             if(_health > _maxHealth) _health = _maxHealth;
         
