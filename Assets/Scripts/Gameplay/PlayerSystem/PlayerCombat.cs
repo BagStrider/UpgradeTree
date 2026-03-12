@@ -2,10 +2,11 @@ using System;
 using Core.Interfaces;
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat;
+using Gameplay.Player;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Player
+namespace Gameplay.PlayerSystem
 {
     public class PlayerCombat : IInitializable, IDisposable
     {

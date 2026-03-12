@@ -8,11 +8,13 @@ namespace Gameplay.Player
         public float Damage => _damage;
         public float DamageMultiplier => _damageMultiplier;
         public float AdditionalAttacks => _additionalAttacks;
+        public float MaxHealth => _maxHealth;
         
         private float _movementSpeed;
         private float _damage;
         private float _damageMultiplier;
         private float _additionalAttacks;
+        private float _maxHealth;
 
         public PlayerStats(PlayerStatsConfig config)
         {
@@ -20,6 +22,7 @@ namespace Gameplay.Player
             _damage = config.Damage;
             _damageMultiplier = config.DamageMultiplier;
             _additionalAttacks = config.AdditionalAttacks;
+            _maxHealth = config.MaxHealth;
         }
 
         public void SetDamage(float value) => _damage = value;

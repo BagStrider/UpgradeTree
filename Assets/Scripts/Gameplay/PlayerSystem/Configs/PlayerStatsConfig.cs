@@ -6,6 +6,7 @@ namespace Gameplay.Player.Configs
     public class PlayerStatsConfig : ScriptableObject
     {
         public float AttackSpeed => _additionalAttacks;
+        public float MaxHealth => _maxHealth;
         public float MovementSpeed => _movementSpeed;
         public float Damage => _damage;
         public float DamageMultiplier => _damageMultiplier;
@@ -16,5 +17,6 @@ namespace Gameplay.Player.Configs
         [SerializeField] private float _damage;
         [SerializeField] private float _damageMultiplier;
         [SerializeField] private float _additionalAttacks;
+        [SerializeField] private float _maxHealth;
     }
 }
