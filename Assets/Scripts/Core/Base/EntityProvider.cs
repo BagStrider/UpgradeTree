@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.Base
 {
-    public class EntityProvider : MonoBehaviour
+    public class EntityProvider : MonoBehaviour, IEntityProvider
     {
         private IEntity _entity;
 

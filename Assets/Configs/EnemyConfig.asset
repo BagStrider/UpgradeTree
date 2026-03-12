@@ -16,4 +16,4 @@ MonoBehaviour:
   _currentHealth: 75
   _sprite: {fileID: -3338749442709606003, guid: b68e5a96ce17fa3469aaf6d455618042, type: 3}
   _viewPrefab: {fileID: 25686862753294809, guid: 9ed83709a802a994982087629dc9004e, type: 3}
-  _healthViewPrefab: {fileID: 2715312142488363657, guid: cee876581bda62b4e9a301164f5598a1, type: 3}
+  _healthViewPrefab: {fileID: 4160109952998278844, guid: 42c686a60d3456e4c8629b5e86a3a3fe, type: 3}

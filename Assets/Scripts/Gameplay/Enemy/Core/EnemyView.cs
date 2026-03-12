@@ -1,24 +1,13 @@
-using BagHealthBar.Scripts;
+using Plugins.BHealthBar.Scripts;
 using UnityEngine;
 
 namespace Gameplay.Enemy.Core
 {
     public class EnemyView : MonoBehaviour
     {
-        public HealthBarUI HealthView => _healthView;
-        
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        
-        private HealthBarUI _healthView;
 
-        public void Initialize(HealthBarUI healthView, Transform healthViewParent)
-        {
-            _healthView = healthView;
-            //todo: переделать
-            _healthView.transform.position = UnityEngine.Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, 1f, 0f));
-        }
-        
         public void SetSprite(Sprite sprite)
         {
             _spriteRenderer.sprite = sprite;

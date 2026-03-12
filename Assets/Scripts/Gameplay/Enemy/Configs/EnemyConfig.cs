@@ -1,5 +1,5 @@
-using BagHealthBar.Scripts;
 using Gameplay.Enemy.Core;
+using Plugins.BHealthBar.Scripts;
 using UnityEngine;
 
 namespace Gameplay.Enemy.Configs
@@ -8,7 +8,7 @@ namespace Gameplay.Enemy.Configs
     public class EnemyConfig : ScriptableObject
     {
         public EnemyView ViewPrefab => _viewPrefab;
-        public HealthBarUI HealthViewPrefab => _healthViewPrefab;
+        public DefaultHealthBar HealthViewPrefab => _healthViewPrefab;
         public float Health => _currentHealth;
         public float MaxHealth => _maxHealth;
         public Sprite Sprite => _sprite;
@@ -20,6 +20,6 @@ namespace Gameplay.Enemy.Configs
         [Header("View")]
         [SerializeField] private Sprite _sprite;
         [SerializeField] private EnemyView _viewPrefab;
-        [SerializeField] private HealthBarUI _healthViewPrefab;
+        [SerializeField] private DefaultHealthBar _healthViewPrefab;
     }
 }
