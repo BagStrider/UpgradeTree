@@ -35,24 +35,36 @@ namespace Plugins.BSceneLauncher.Source.Editor
                     paddingBottom = 4
                 }
             };
-
+            var row = new VisualElement
+            {
+                style =
+                {
+                    flexDirection = FlexDirection.Row,
+                    alignItems = Align.Center
+                }
+            };
+            
             var scenePopup = new PopupField<string>(
                 "Scene",
                 _sceneNames.ToList(),
                 _selectedSceneIndex
             );
-
+            scenePopup.style.flexGrow = 1;
             scenePopup.RegisterValueChangedCallback(evt =>
             {
                 _selectedSceneIndex = _sceneNames.ToList().IndexOf(evt.newValue);
             });
 
-            var playButton = new Button(OnPlayButtonClicked)
-            {
-                text = "▶ Play"
-            };
-
-            root.Add(scenePopup);
+            var openButton = new Button(OnOpenButtonClicked) {text = "Open"};
+            var playButton = new Button(OnPlayButtonClicked) {text = "▶ Play"};
+            
+            openButton.style.marginLeft = 4;
+            playButton.style.marginTop = 6;
+            playButton.style.width = Length.Percent(100);
+            
+            row.Add(scenePopup);
+            row.Add(openButton);
+            root.Add(row);
             root.Add(playButton);
 
             return root;
@@ -76,7 +88,16 @@ namespace Plugins.BSceneLauncher.Source.Editor
             EditorSceneManager.OpenScene(_scenePaths[_selectedSceneIndex]);
             EditorApplication.isPlaying = true;
         }
+        private void OnOpenButtonClicked()
+        {
+            if (_scenePaths == null || _scenePaths.Length == 0)
+                return;
 
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                return;
+
+            EditorSceneManager.OpenScene(_scenePaths[_selectedSceneIndex]);
+        }
         private static void OnPlayModeStateChanged(PlayModeStateChange state)
         {
             if (state != PlayModeStateChange.EnteredEditMode)

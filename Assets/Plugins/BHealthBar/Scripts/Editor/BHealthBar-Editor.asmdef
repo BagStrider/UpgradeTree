@@ -1,0 +1,10 @@
+{
+    "name": "BHealthBar-Editor",
+    "references": [
+        "BHealthBar"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

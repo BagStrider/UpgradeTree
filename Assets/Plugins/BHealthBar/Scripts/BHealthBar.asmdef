@@ -1,0 +1,6 @@
+{
+    "name": "BHealthBar",
+    "references": [
+        "Unity.TextMeshPro"
+    ]
+}
